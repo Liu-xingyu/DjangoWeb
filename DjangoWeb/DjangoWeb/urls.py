@@ -21,4 +21,7 @@ from apps import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'allUser/', views.getUsers),
+    path(r'adduser/', views.addUser),
+    path(r'deleteUser/', views.deleteUser),
+    path(r'otherHtml/', views.otherHtml),
 ]

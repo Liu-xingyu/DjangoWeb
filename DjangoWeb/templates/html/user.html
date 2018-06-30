@@ -14,6 +14,7 @@
             <td>姓名</td>
             <td>密码</td>
             <td>邮箱</td>
+            <td>操作</td>
         </tr>
         </thead>
         <tbody>
@@ -23,6 +24,7 @@
                 <td>{{ user.username }}</td>
                 <td>{{ user.password }}</td>
                 <td>{{ user.email }}</td>
+                <td><a href="/deleteUser?id={{ user.id }}" onclick="return delConfirm()">删除</a></td>
             </tr>
         {% endfor %}
         </tbody>
@@ -30,6 +32,77 @@
     </table>
 
 </div>
+<br>
+<div>
+    <form action="/adduser/" method="post">
+        <table>
+            <thead>
+            <tr>
+                <td>用户名称</td>
+                <td>设置密码</td>
+                <td>重复密码</td>
+                <td>邮箱地址</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="text" name="username"></td>
+                <td><input type="password" name="password"></td>
+                <td><input type="password" name="repassword"></td>
+                <td><input type="email" name="email"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="新增用户" onclick="validateUser(this.form)">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+
+<div name="otherDiv">
+    <a href="#" onclick="addEle()">Add an Element</a>
+</div>
 
 </body>
 </html>
+
+<script type="text/javascript" src="/static/js/jquery-3.3.1.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        $(".otherDiv").hidden();
+        alert('页面已经成功加载，请继续操作！');
+    });
+
+    function validateUser(_form) {
+        var name = $("input[name='username']").val();
+        var pwd = $("input[name='password']").val();
+        var r_pwd = $("input[name='repassword']").val();
+        var email = $("input[name='email']").val();
+        if (name == "" || pwd == "" || r_pwd == "" || email == "") {
+            alert("请将信息填写完整后再提交！");
+        } else {
+            if (pwd != r_pwd) {
+                alert("两次密码输入不一致，请重新设置密码！");
+            } else if (confirm("是否确定添加新用户？")) {
+                $(_form).submit();
+            }
+        }
+    }
+
+    function addEle() {
+        $("div[name='otherDiv']").after("<br><br><a href='/otherHtml/'>跳转</a>");
+    }
+
+    function delConfirm() {
+        if (confirm("确认删除该用户信息？")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+</script>

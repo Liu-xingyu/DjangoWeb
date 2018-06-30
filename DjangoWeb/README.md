@@ -39,3 +39,6 @@ DATABASES = {
         'PORT':'3306',
     }
 }
+
+11.重定向跳转执行制定的URL地址中的action
+HttpResponseRedirect('/redirectUrl/')，redirectUrl为重定向的请求地址
