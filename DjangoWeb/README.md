@@ -1,4 +1,4 @@
-python的web开发框架django应用
+python的web开发框架django应用<br>
 1.创建项目
 django-admin createproject django-demo1
 
